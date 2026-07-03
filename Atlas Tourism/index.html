@@ -383,23 +383,27 @@
       </div>
 
       <div class="col-lg-7" data-aos="fade-left">
-        <form class="contact-form" id="contactForm" novalidate>
+        <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="d-none">
+            <label>Don't fill this out: <input name="bot-field"></label>
+          </p>
           <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label small fw-semibold" for="fullName">Full Name</label>
-              <input type="text" class="form-control" id="fullName" required>
+              <input type="text" name="fullName" class="form-control" id="fullName" required>
             </div>
             <div class="col-md-6">
               <label class="form-label small fw-semibold" for="email">Email</label>
-              <input type="email" class="form-control" id="email" required>
+              <input type="email" name="email" class="form-control" id="email" required>
             </div>
             <div class="col-md-6">
               <label class="form-label small fw-semibold" for="phone">Phone Number</label>
-              <input type="tel" class="form-control" id="phone" required>
+              <input type="tel" name="phone" class="form-control" id="phone" required>
             </div>
             <div class="col-md-6">
               <label class="form-label small fw-semibold" for="destination">Destination Interested In</label>
-              <select class="form-select" id="destination" required>
+              <select class="form-select" name="destination" id="destination" required>
                 <option value="" selected disabled>Choose a destination</option>
                 <option>Nepal</option>
                 <option>Darjeeling</option>
@@ -411,76 +415,21 @@
             </div>
             <div class="col-md-6">
               <label class="form-label small fw-semibold" for="travelDate">Travel Date</label>
-              <input type="date" class="form-control" id="travelDate">
+              <input type="date" name="travelDate" class="form-control" id="travelDate">
             </div>
             <div class="col-md-6">
               <label class="form-label small fw-semibold" for="travelers">Number of Travelers</label>
-              <input type="number" min="1" class="form-control" id="travelers" placeholder="e.g. 2">
+              <input type="number" name="travelers" min="1" class="form-control" id="travelers" placeholder="e.g. 2">
             </div>
             <div class="col-12">
               <label class="form-label small fw-semibold" for="message">Message</label>
-              <textarea class="form-control" id="message" rows="4" placeholder="Tell us about your dream trip..."></textarea>
+              <textarea class="form-control" name="message" id="message" rows="4" placeholder="Tell us about your dream trip..."></textarea>
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-gold w-100">Send Message <i class="fa-solid fa-paper-plane ms-1"></i></button>
               <div id="formSuccess" class="text-success small mt-2 d-none"><i class="fa-solid fa-circle-check me-1"></i>Thanks! Your message has been noted &mdash; our team will reach out shortly.</div>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== MAP ===== -->
-<section class="map-wrap" data-aos="fade-up">
-  <iframe src="https://www.google.com/maps?q=Gorakhpur,Uttar%20Pradesh,India&output=embed" title="Atlas Tourism office location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="pt-5">
-  <div class="container">
-    <div class="row g-4 pb-4">
-      <div class="col-lg-4">
-       <a class="navbar-brand d-flex align-items-center" href="#home">
-  <img src="Logo/logo.png" alt="Atlas Tourism logo" height="36" class="me-2">
-  Atlas<span> Tourism</span>
-</a>
-        <p class="small">A trusted travel agency crafting affordable, personalized journeys across mountains, heritage cities, and islands &mdash; with care at every step.</p>
-        <div class="mt-3">
-          <a href="#" class="social-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="social-circle" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#" class="social-circle" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" class="social-circle" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        </div>
-      </div>
-      <div class="col-6 col-lg-2">
-        <h5>Quick Links</h5>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#destinations">Destinations</a></li>
-          <li><a href="#why">Packages</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-lg-3">
-        <h5>Popular Destinations</h5>
-        <ul>
-          <li><a href="#destinations">Nepal</a></li>
-          <li><a href="#destinations">Darjeeling</a></li>
-          <li><a href="#destinations">Varanasi</a></li>
-          <li><a href="#destinations">Shillong</a></li>
-          <li><a href="#destinations">Andaman &amp; Nicobar</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-3">
-        <h5>Newsletter</h5>
-        <p class="small">Get travel deals and destination guides in your inbox.</p>
-        <form class="d-flex" onsubmit="event.preventDefault(); this.reset(); this.querySelector('.newsletter-msg')?.classList.remove('d-none');">
-          <input type="email" class="form-control newsletter-input" placeholder="Your email" required>
-          <button type="submit" class="newsletter-btn"><i class="fa-solid fa-paper-plane"></i></button>
         </form>
         <div class="small text-gold mt-2 d-none newsletter-msg">Subscribed! Welcome aboard.</div>
       </div>
@@ -581,10 +530,21 @@
       contactForm.classList.add('was-validated');
       return;
     }
-    document.getElementById('formSuccess').classList.remove('d-none');
-    contactForm.reset();
-    contactForm.classList.remove('was-validated');
-  });
+    const formData = new FormData(contactForm);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(() => {
+      document.getElementById('formSuccess').classList.remove('d-none');
+      contactForm.reset();
+      contactForm.classList.remove('was-validated');
+    })
+    .catch(() => {
+      alert('Something went wrong sending your message. Please try again or email us directly.');
+    });
+});
 </script>
 </body>
 </html>

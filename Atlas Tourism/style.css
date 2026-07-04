@@ -502,7 +502,7 @@
     display:block;
     color:var(--gold);
     font-size:1.8rem;
-    transform:rotate(90deg);
+    transform:rotate(-45deg);
     z-index:2;
   }
   .plane-wrap{

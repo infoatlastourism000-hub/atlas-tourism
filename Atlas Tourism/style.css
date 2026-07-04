@@ -1,4 +1,4 @@
- :root{
+:root{
     --deep-blue:#0B3C5D;
     --deep-blue-dark:#082943;
     --sky-blue:#5DADE2;
@@ -479,14 +479,63 @@
     transition:opacity .5s ease, visibility .5s ease;
   }
   #preloader.hidden{opacity:0;visibility:hidden;}
-  .loader-ring{
-    width:56px;height:56px;
-    border:4px solid rgba(255,255,255,.2);
-    border-top-color:var(--gold);
-    border-radius:50%;
-    animation:spin 1s linear infinite;
+  .plane-loader{
+    position:relative;
+    width:min(260px, 70vw);
+    height:60px;
   }
-  @keyframes spin{to{transform:rotate(360deg);}}
+  .plane-track{
+    position:absolute;
+    top:50%;left:0;right:0;
+    height:2px;
+    background:repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,.35) 0,
+      rgba(255,255,255,.35) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+    transform:translateY(-50%);
+  }
+  .plane-icon{
+    position:relative;
+    display:block;
+    color:var(--gold);
+    font-size:1.8rem;
+    transform:rotate(90deg);
+    z-index:2;
+  }
+  .plane-wrap{
+    position:absolute;
+    top:50%;left:0;
+    transform:translateY(-50%);
+    animation:plane-fly 2.2s ease-in-out infinite;
+  }
+  .plane-trail{
+    position:absolute;
+    top:50%;
+    right:100%;
+    transform:translateY(-50%);
+    width:70px;
+    height:3px;
+    background:linear-gradient(to left, var(--gold), rgba(244,197,66,0));
+    border-radius:2px;
+    z-index:1;
+  }
+  @keyframes plane-fly{
+    0%{
+      left:0;
+      transform:translateY(-50%);
+      opacity:0;
+    }
+    10%{opacity:1;}
+    90%{opacity:1;}
+    100%{
+      left:100%;
+      transform:translate(-100%,-50%);
+      opacity:0;
+    }
+  }
 
   a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
     outline:3px solid var(--sky-blue);
